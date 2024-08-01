@@ -695,7 +695,7 @@
           "text_color": "#ffffff",
           "text_alignment": "center",
           "announcement_text": "Welcome to our store",
-          "enable_button": true,
+          "enable_button": false,
           "button_text": "Shop Now",
           "button_link": "shopify:\/\/collections\/all"
         }
