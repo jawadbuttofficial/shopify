@@ -691,21 +691,25 @@
       "announcement": {
         "type": "announcement",
         "settings": {
+          "bg_color": "#000000",
+          "text_color": "#ffffff",
+          "text_alignment": "center",
           "announcement_text": "Welcome to our store",
-          "announcement_text_color": "#ecb4b4",
-          "announcement_bg_color": "#b42525",
-          "announcement_animation": "marquee",
-          "announcement_text_alignment": "left"
+          "enable_button": true,
+          "button_text": "Shop Now",
+          "button_link": "shopify:\/\/collections\/all"
         }
       },
       "announcement_bCrxYg": {
         "type": "announcement",
         "settings": {
+          "bg_color": "#000000",
+          "text_color": "#ffffff",
+          "text_alignment": "left",
           "announcement_text": "Welcome to our store!",
-          "announcement_text_color": "#ffffff",
-          "announcement_bg_color": "#000000",
-          "announcement_animation": "static",
-          "announcement_text_alignment": "center"
+          "enable_button": false,
+          "button_text": "Shop Now",
+          "button_link": "shopify:\/\/collections\/all"
         }
       }
     },
