@@ -3,42 +3,20 @@
   "name": "Announcement Bar",
   "settings": [
     {
-      "type": "text",
-      "id": "announcement_text",
-      "label": "Announcement Text",
-      "default": "Welcome to our store!"
-    },
-    {
       "type": "color",
-      "id": "announcement_text_color",
-      "label": "Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "announcement_bg_color",
+      "id": "bg_color",
       "label": "Background Color",
       "default": "#000000"
     },
     {
-      "type": "select",
-      "id": "announcement_animation",
-      "label": "Text Animation",
-      "options": [
-        {
-          "value": "static",
-          "label": "Static"
-        },
-        {
-          "value": "marquee",
-          "label": "Marquee"
-        }
-      ],
-      "default": "static"
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
     },
     {
       "type": "select",
-      "id": "announcement_text_alignment",
+      "id": "text_alignment",
       "label": "Text Alignment",
       "options": [
         {
@@ -48,57 +26,77 @@
         {
           "value": "center",
           "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
         }
       ],
-      "default": "center"
+      "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "Summer Sale For All Swim Suits And Free Express Delivery – OFF 50%!"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_button",
+      "label": "Enable Button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
     }
   ],
-  "presets": [
+  "blocks": [
     {
-      "name": "Announcement",
-      "category": "Custom"
+      "type": "select",
+      "name": "Language Switcher",
+      "settings": [
+        {
+          "type": "select",
+          "id": "language",
+          "label": "Choose Language",
+          "options": [
+            {"value": "english", "label": "English"},
+            {"value": "spanish", "label": "Spanish"},
+            {"value": "french", "label": "French"}
+          ]
+        }
+      ]
     }
   ]
 }
 {% endschema %}
 
-{% if section.settings.announcement_text %}
-  <style>
-    .announcement-bar-{{ section.id }} {
-      background-color: {{ section.settings.announcement_bg_color }};
-      color: {{ section.settings.announcement_text_color }};
-      text-align: {% if section.settings.announcement_animation == 'static' %}{{ section.settings.announcement_text_alignment }}{% else %}initial{% endif %};
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .announcement-bar-{{ section.id }} .language-switcher {
-      margin-left: auto;
-    }
-  </style>
-  <div class="announcement-bar-{{ section.id }}">
-    <div class="announcement-text">
-      {% if section.settings.announcement_animation == 'marquee' %}
-        <marquee behavior="scroll" direction="left">{{ section.settings.announcement_text }}</marquee>
-      {% else %}
-        <div style="text-align: {{ section.settings.announcement_text_alignment }}">{{ section.settings.announcement_text }}</div>
-      {% endif %}
-    </div>
-    <div class="language-switcher">
-      {% if shop.locales.size > 1 %}
-        <select id="language-selector" onchange="window.location.href=this.value;">
-          {% for locale in shop.locales %}
-            <option value="{{ locale.url }}" {% if locale.code == shop.locale %}selected{% endif %}>
-              {{ locale.name }}
-            </option>
-          {% endfor %}
-        </select>
-      {% endif %}
-    </div>
-  </div>
-{% endif %}
+<style>
+  .announcement-bar {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    text-align: {{ section.settings.text_alignment }};
+    padding: 10px 20px;
+  }
+  .announcement-bar a {
+    color: {{ section.settings.text_color }};
+    text-decoration: none;
+  }
+</style>
+
+<div class="announcement-bar">
+  {{ section.settings.announcement_text }}
+  {% if section.settings.enable_button %}
+    <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+  {% endif %}
+  <select onchange="window.location.href=this.value;">
+    <option value="/?lang=en">English</option>
+    <option value="/?lang=es">Spanish</option>
+    <option value="/?lang=fr">French</option>
+  </select>
+</div>
