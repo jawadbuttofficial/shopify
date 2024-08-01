@@ -59,7 +59,7 @@
   ],
   "presets": [
     {
-      "name": "Default",
+      "name": "Announcement",
       "category": "Custom"
     }
   ]
@@ -74,29 +74,12 @@
       text-align: {% if section.settings.announcement_animation == 'static' %}{{ section.settings.announcement_text_alignment }}{% else %}initial{% endif %};
       padding: 10px;
     }
-    .announcement-bar.marquee {
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .announcement-bar .marquee-content {
-      display: inline-block;
-      padding-left: 100%;
-      animation: marquee 10s linear infinite;
-    }
-    @keyframes marquee {
-      from {
-        transform: translateX(100%);
-      }
-      to {
-        transform: translateX(-100%);
-      }
-    }
   </style>
-  <div class="announcement-bar {% if section.settings.announcement_animation == 'marquee' %}marquee{% endif %}">
+  <div class="announcement-bar">
     {% if section.settings.announcement_animation == 'marquee' %}
-      <div class="marquee-content">{{ section.settings.announcement_text }}</div>
+      <marquee behavior="scroll" direction="left">{{ section.settings.announcement_text }}</marquee>
     {% else %}
-      <div>{{ section.settings.announcement_text }}</div>
+      <div style="text-align: {{ section.settings.announcement_text_alignment }}">{{ section.settings.announcement_text }}</div>
     {% endif %}
   </div>
 {% endif %}
