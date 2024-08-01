@@ -692,10 +692,20 @@
         "type": "announcement",
         "settings": {
           "announcement_text": "Welcome to our store",
-          "announcement_text_color": "#FFFFFF",
+          "announcement_text_color": "#ffffff",
           "announcement_bg_color": "#000000",
           "announcement_animation": "static",
           "announcement_text_alignment": "center"
+        }
+      },
+      "announcement_bCrxYg": {
+        "type": "announcement",
+        "settings": {
+          "announcement_text": "Welcome to our store!",
+          "announcement_text_color": "#FFFFFF",
+          "announcement_bg_color": "#000000",
+          "announcement_animation": "static",
+          "announcement_text_alignment": "left"
         }
       }
     },
@@ -704,7 +714,8 @@
       "1527851664343",
       "1523632221771",
       "1522916022994",
-      "1523632130819"
+      "1523632130819",
+      "announcement_bCrxYg"
     ]
   },
   "presets": {
