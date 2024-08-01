@@ -169,7 +169,7 @@
           "header_bg": "rgba(0,0,0,0)",
           "header_inverted": false,
           "main_header_hover_color": "#6fcfb8",
-          "megamenu_toggle": true,
+          "megamenu_toggle": false,
           "header_cart": true,
           "ajax_cart": true
         }
@@ -692,7 +692,7 @@
         "type": "announcement",
         "settings": {
           "announcement_text": "Welcome to our store",
-          "announcement_text_color": "#ffffff",
+          "announcement_text_color": "#ecb4b4",
           "announcement_bg_color": "#b42525",
           "announcement_animation": "marquee",
           "announcement_text_alignment": "left"
