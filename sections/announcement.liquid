@@ -68,14 +68,14 @@
 
 {% if section.settings.announcement_text %}
   <style>
-    .announcement-bar {
+    .announcement-bar-{{ section.id }} {
       background-color: {{ section.settings.announcement_bg_color }};
       color: {{ section.settings.announcement_text_color }};
       text-align: {% if section.settings.announcement_animation == 'static' %}{{ section.settings.announcement_text_alignment }}{% else %}initial{% endif %};
       padding: 10px;
     }
   </style>
-  <div class="announcement-bar">
+  <div class="announcement-bar-{{ section.id }}">
     {% if section.settings.announcement_animation == 'marquee' %}
       <marquee behavior="scroll" direction="left">{{ section.settings.announcement_text }}</marquee>
     {% else %}
