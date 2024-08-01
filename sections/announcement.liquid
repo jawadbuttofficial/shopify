@@ -73,13 +73,32 @@
       color: {{ section.settings.announcement_text_color }};
       text-align: {% if section.settings.announcement_animation == 'static' %}{{ section.settings.announcement_text_alignment }}{% else %}initial{% endif %};
       padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .announcement-bar-{{ section.id }} .language-switcher {
+      margin-left: auto;
     }
   </style>
   <div class="announcement-bar-{{ section.id }}">
-    {% if section.settings.announcement_animation == 'marquee' %}
-      <marquee behavior="scroll" direction="left">{{ section.settings.announcement_text }}</marquee>
-    {% else %}
-      <div style="text-align: {{ section.settings.announcement_text_alignment }}">{{ section.settings.announcement_text }}</div>
-    {% endif %}
+    <div class="announcement-text">
+      {% if section.settings.announcement_animation == 'marquee' %}
+        <marquee behavior="scroll" direction="left">{{ section.settings.announcement_text }}</marquee>
+      {% else %}
+        <div style="text-align: {{ section.settings.announcement_text_alignment }}">{{ section.settings.announcement_text }}</div>
+      {% endif %}
+    </div>
+    <div class="language-switcher">
+      {% if shop.locales.size > 1 %}
+        <select id="language-selector" onchange="window.location.href=this.value;">
+          {% for locale in shop.locales %}
+            <option value="{{ locale.url }}" {% if locale.code == shop.locale %}selected{% endif %}>
+              {{ locale.name }}
+            </option>
+          {% endfor %}
+        </select>
+      {% endif %}
+    </div>
   </div>
 {% endif %}
