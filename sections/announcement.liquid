@@ -72,11 +72,13 @@
   {% if section.settings.enable_button %}
     <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
   {% endif %}
-  <select onchange="location = this.value;">
-    {% for language in shop.enabled_languages %}
-      <option value="{{ shop.url | append: language.url }}" {% if language.locale == shop.locale %}selected{% endif %}>
-        {{ language.name }}
+  {% form 'localization', id: "localization_form_tag", class: "locale-select-form" %}
+  <select name="locale_code" id="localeSelect" onchange="this.form.submit()">
+    {% for locale in shop.published_locales %}
+      <option value="{{ locale.iso_code }}" {% if locale.iso_code == form.current_locale.iso_code %}selected{% endif %}>
+        {{ locale.endonym_name }}
       </option>
     {% endfor %}
   </select>
+{% endform %}
 </div>
